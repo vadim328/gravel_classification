@@ -1,0 +1,74 @@
+{
+  "version": "5.1.1",
+  "flags": {},
+  "imagePath": "/openmmlab/mmyolo/external_data/dataset/test/images/bffb53dc-52_ЩПС_фр._0-20_мм_НЕГОСТ.jpeg",
+  "imageData": null,
+  "imageHeight": 1944,
+  "imageWidth": 2592,
+  "shapes": [
+    {
+      "label": "crushed stone",
+      "points": [
+        [
+          0.0,
+          826.9149169921875
+        ],
+        [
+          305.6589660644531,
+          1941.947265625
+        ]
+      ],
+      "group_id": null,
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "crushed stone",
+      "points": [
+        [
+          2006.2603759765625,
+          1467.5767822265625
+        ],
+        [
+          2591.686279296875,
+          1942.1468505859375
+        ]
+      ],
+      "group_id": null,
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "crushed stone",
+      "points": [
+        [
+          601.3161010742188,
+          1615.7703857421875
+        ],
+        [
+          2028.8079833984375,
+          1944.0
+        ]
+      ],
+      "group_id": null,
+      "shape_type": "rectangle",
+      "flags": {}
+    },
+    {
+      "label": "crushed stone",
+      "points": [
+        [
+          3.5855255126953125,
+          5.511115550994873
+        ],
+        [
+          1874.5909423828125,
+          883.9920043945312
+        ]
+      ],
+      "group_id": null,
+      "shape_type": "rectangle",
+      "flags": {}
+    }
+  ]
+}
