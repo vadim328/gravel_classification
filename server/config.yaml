@@ -1,0 +1,3 @@
+detection_server: 'http://localhost:5050/predictions/model_yolo8_v1'
+classification_server: 'http://localhost:6060/predictions/deit3_small_384px_100ep'
+center_square_size: 200 # center_square_size_big/2
