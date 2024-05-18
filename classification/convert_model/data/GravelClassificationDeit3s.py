@@ -1,4 +1,4 @@
-# ---- EFFICIENTNET ----
+# ---- DEIT3s ----
 
 classes = ["0-20", "0-5", "20-25", "20-40", "25-60", "40-70", "5-20"]
 num_classes=len(classes) 

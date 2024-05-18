@@ -4,7 +4,7 @@ ARG CUDNN="8"
 
 FROM pytorch/pytorch:${PYTORCH}-cuda${CUDA}-cudnn${CUDNN}-devel
 
-WORKDIR /mmpretrain
+WORKDIR /workspace
 
 # fetch the key refer to https://forums.developer.nvidia.com/t/18-04-cuda-docker-image-is-broken/212892/9
 RUN apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/3bf863cc.pub 32
@@ -47,17 +47,17 @@ ENV LD_LIBRARY_PATH=$ONNXRUNTIME_DIR/lib:$LD_LIBRARY_PATH
 
 # TORCHSERVE
 RUN pip install torchserve torch-model-archiver nvgpu
-ADD ./torchserve /torchserve
+ADD ./torchserve /workspace/torchserve
 
 # Convert models
-ADD ./convert_model /mmpretrain/convert_model
+ADD ./convert_model /workspace/mmpretrain/convert_model
 
 # Upload model
 RUN apt-get install -y curl unzip
 RUN curl -LO https://huggingface.co/Vades/GravelClassificationModels/resolve/main/GravelClassificationDeit3s.zip \
     && unzip GravelClassificationDeit3s.zip \
-    && mv GravelClassificationDeit3s.mar /torchserve/model_store/GravelClassificationDeit3s.mar \
-    && mv GravelClassificationDeit3s_100e.pth /mmpretrain/convert_model/models/GravelClassificationDeit3s_100e.pth \
+    && mv GravelClassificationDeit3s.mar /workspace/torchserve/model_store/GravelClassificationDeit3s.mar \
+    && mv GravelClassificationDeit3s_100e.pth /workspace/mmpretrain/convert_model/models/GravelClassificationDeit3s_100e.pth \
     && rm GravelClassificationDeit3s.zip
 
 EXPOSE 554 8080 8081 8082 8888
