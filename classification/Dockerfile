@@ -14,7 +14,13 @@ ENV TORCH_CUDA_ARCH_LIST="6.0 6.1 7.0+PTX"
 ENV TORCH_NVCC_FLAGS="-Xfatbin -compress-all"
 ENV CMAKE_PREFIX_PATH="(dirname(which conda))/../"
 
-RUN apt-get update && apt-get install -y ffmpeg libsm6 libxext6 git ninja-build libglib2.0-0 libsm6 libxrender-dev libxext6 \
+
+RUN ln -fs /usr/share/zoneinfo/Etc/UTC /etc/localtime && \
+    echo "Etc/UTC" > /etc/timezone
+
+RUN apt-get update && \
+    apt-get install -y \
+    ffmpeg libsm6 libxext6 git ninja-build libglib2.0-0 libsm6 libxrender-dev libxext6 \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -28,16 +34,16 @@ WORKDIR ./mmpretrain
 RUN mim install --no-cache-dir -e .
 
 #JDK
-apt update
-apt install default-jdk
+RUN apt-get update
+RUN apt-get install -y default-jdk
 
 # ONNX
 RUN pip install onnxruntime-gpu==1.12.0 pycuda
+RUN apt-get install -y wget
 RUN wget https://github.com/microsoft/onnxruntime/releases/download/v1.12.0/onnxruntime-linux-x64-1.12.0.tgz
 RUN tar -zxvf onnxruntime-linux-x64-1.12.0.tgz && rm onnxruntime-linux-x64-1.12.0.tgz
 ENV ONNXRUNTIME_DIR=/openmmlab/onnxruntime-linux-x64-1.12.0
 ENV LD_LIBRARY_PATH=$ONNXRUNTIME_DIR/lib:$LD_LIBRARY_PATH
-
 
 # TORCHSERVE
 RUN pip install torchserve torch-model-archiver nvgpu
@@ -49,9 +55,9 @@ ADD ./convert_model /mmpretrain/convert_model
 # Upload model
 RUN apt-get install -y curl unzip
 RUN curl -LO https://huggingface.co/Vades/GravelClassificationModels/resolve/main/GravelClassificationDeit3s.zip \
-    && unzip GravelClassificationModels.zip \
+    && unzip GravelClassificationDeit3s.zip \
     && mv GravelClassificationDeit3s.mar /torchserve/model_store/GravelClassificationDeit3s.mar \
-    && mv GravelClassificationDeit3s.pth /mmpretrain/convert_model/models/GravelClassificationDeit3s.pth \
-    && rm GravelClassificationModels.zip
+    && mv GravelClassificationDeit3s_100e.pth /mmpretrain/convert_model/models/GravelClassificationDeit3s_100e.pth \
+    && rm GravelClassificationDeit3s.zip
 
 EXPOSE 554 8080 8081 8082 8888
