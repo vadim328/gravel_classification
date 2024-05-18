@@ -1,4 +1,0 @@
-path_image: './detected objects/images/'
-path_label: './detected objects/lables/'
-center_square_size_big: 400
-center_square_size: 200 # center_square_size_big/2
