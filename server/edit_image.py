@@ -70,21 +70,26 @@ class EditImage:
 
         self.image = image
 
-    def write_class(self, data, algorithm):
+    def write_class(self, fraction):
         image = self.image
-        if algorithm == 'one_stage':
-            self.fraction = str(data['class_label'])
-        elif algorithm == 'two_stage':
-            self.fraction = str(data['pred_class'])
+        self.fraction = fraction
 
-        # Параметры для putText
-        org = (self.x1, self.y1)
+        # Параметры рамки для текста
+        top_left = (self.x1, self.y1)
+        bottom_right = (self.x1+220, self.y1-50)
+        color_background = (255, 255, 255)
+        # Рисуем рамку с фоном
+        cv2.rectangle(image, top_left, bottom_right, color_background, thickness=cv2.FILLED)
+        
+        # Параметры для текста
+        org = (self.x1, self.y1+50)
         font_face = cv2.FONT_HERSHEY_SIMPLEX
         font_scale = 2
-        color = (0, 0, 0)
+        color_text = (0, 0, 0)
         thickness = 4
-
-        cv2.putText(image, self.fraction, org, font_face, font_scale, color, thickness)
+        # Добавляем текст
+        cv2.putText(image, self.fraction, org, font_face, font_scale, color_text, thickness)
+        
         self.image = image
 
     def get_image(self):

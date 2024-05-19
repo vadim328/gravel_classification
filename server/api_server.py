@@ -35,11 +35,11 @@ async def upload_image(file: UploadFile = File(...),
     #return {"status": "OK"}
 
     if algorithm == 'one_stage':
-        image.write_class(response_detection.json()[0], algorithm)
+        image.write_class(response_detection.json()[0]['class_name'])
     elif algorithm == 'two_stage':
         center_image = image.get_center_img() # Получаем центр изображения
         response_classification = requests.put(classification_server, data=center_image) # запрос на классификацию
-        image.write_class(response_classification.json(), algorithm)
+        image.write_class(response_classification.json()['pred_class'])
 
     # Сохраняем изображение
     filename = file.filename
