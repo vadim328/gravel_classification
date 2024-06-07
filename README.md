@@ -1,2 +1,23 @@
-# crushed_stone_classification
-A computer vision system for determining the type of crushed stone fraction in the back of a truck being transported from a quarry.
+![image](https://github.com/vadim328/gravel_classification/assets/28571240/4f6ba4ca-5f29-4f83-8b49-cc147e973077)# crushed_stone_classification
+
+### Цель проекта
+
+Автоматизированная система предназначенная для определения фракции щебня в кузове грузовика на изображении
+
+### Описание
+
+Система состоит из двух Docker-контейнеров в которых развернуты модели обнаружения объектов и классификации, а также приложения FastAPI для взаимодействия с ней.
+
+Для взаимодействия с системой реализован POST метод /pred. В качестве входных параметров данный метод может принимать: изображение для классификации, алгоритм - одношаговый или двухшаговый и формат возвращаемого результата - json объект или размеченное изображение.
+
+Привер запроса: 
+
+files = {'file': open('image.jpeg', 'rb')}
+params = {'algorithm': 'one_stage', 'return_format': 'image'}
+response = requests.post('http://178.154.221.81:8000/pred', files=files, data=params)
+
+Схема двухшагового процесса:
+
+
+
+
