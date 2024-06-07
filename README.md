@@ -1,4 +1,4 @@
-![image](https://github.com/vadim328/gravel_classification/assets/28571240/4f6ba4ca-5f29-4f83-8b49-cc147e973077)# crushed_stone_classification
+# crushed_stone_classification
 
 ### Цель проекта
 
@@ -18,6 +18,6 @@ response = requests.post('http://178.154.221.81:8000/pred', files=files, data=pa
 
 Схема двухшагового процесса:
 
-
+![image](https://github.com/vadim328/gravel_classification/assets/28571240/4f6ba4ca-5f29-4f83-8b49-cc147e973077)
 
 
