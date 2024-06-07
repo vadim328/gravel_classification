@@ -22,4 +22,9 @@ response = requests.post('http://178.154.221.81:8000/pred', files=files, data=pa
 
 ![image](https://github.com/vadim328/gravel_classification/assets/28571240/4f6ba4ca-5f29-4f83-8b49-cc147e973077)
 
+Пример работы системы:
+
+![image](https://github.com/vadim328/gravel_classification/assets/28571240/56ce36e1-694a-4bfb-bf0a-e76c7b139fb9)
+
+
 
