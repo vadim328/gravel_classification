@@ -13,7 +13,9 @@
 Привер запроса: 
 
 files = {'file': open('image.jpeg', 'rb')}
+
 params = {'algorithm': 'one_stage', 'return_format': 'image'}
+
 response = requests.post('http://178.154.221.81:8000/pred', files=files, data=params)
 
 Схема двухшагового процесса:
